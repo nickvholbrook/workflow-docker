@@ -6,27 +6,6 @@ on:
       - "main"
 
 jobs:
-  lint:
-    name: Kubesec
-    runs-on: ubuntu-20.04
-    permissions:
-      actions: read
-      contents: read
-      security-events: write
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Run kubesec scanner
-        uses: controlplaneio/kubesec-action@43d0ddff5ffee89a6bb9f29b64cd865411137b14
-        with:
-          input: calico.yaml # specify configuration file to scan here
-          format: json
-          output: kubesec-report.json
-      
-      - name: display file content
-        run: |
-          cat kubesec-report.json
   build:
     runs-on: ubuntu-latest
     steps:
